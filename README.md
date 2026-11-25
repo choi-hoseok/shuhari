@@ -10,6 +10,12 @@ everyone starts as a beginner. and we all want to get better. i mean ordinary pe
 
 ## install
 
+```
+/plugin install shuhari --marketplace choi-hoseok/shuhari
+```
+
+when a rule stops fitting you, make your own copy and change it:
+
 ```bash
 git clone https://github.com/choi-hoseok/shuhari.git
 claude --plugin-dir ./shuhari
