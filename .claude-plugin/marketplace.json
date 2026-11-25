@@ -1,0 +1,13 @@
+{
+  "name": "shuhari",
+  "owner": {
+    "name": "Hoseok Choi"
+  },
+  "plugins": [
+    {
+      "name": "shuhari",
+      "source": "./",
+      "description": "How I approach engineering, carried as skills: judgment criteria and working procedures."
+    }
+  ]
+}
