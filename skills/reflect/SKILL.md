@@ -24,19 +24,19 @@ ls -t <project-dir>/*.jsonl <project-dir>/*/*.jsonl <project-dir>/*/subagents/*.
 
 One message, three `Agent` calls, `subagent_type: general-purpose`. Reviewers need MCP access to look up the tickets, chat threads, and observability traces the transcript references, and a read-only type such as `Explore` has no MCP tools.
 
-Each reviewer and the synthesizer name a role line in `~/.claude/shuhari/ki.md` (`$CLAUDE_CONFIG_DIR` replaces `~/.claude` when set) and a default. Set `model` to that line's value, or to the default if the rule or the line is missing. Leave `model` unset when the value is `auto` or `inherit-parent`. If the Agent tool rejects a model, use the default and say so. If it rejects the default, omit `model` so the subagent runs on the parent model, and say so. Pick each subagent's reasoning level and fast or standard speed for the job, per the Subagents section of the **dojo** skill.
+Each reviewer and the synthesizer name a role line in `~/.claude/shuhari/ki.md` (`$CLAUDE_CONFIG_DIR` replaces `~/.claude` when set) and a default. Set `model` and `effort` from that line or its default. Leave both unset when the value is `auto` or `inherit-parent`. If the Agent tool rejects the model or effort, use the default and say so. If it rejects the default, omit `model` and `effort` so the subagent runs on the parent model, and say so.
 
-| Lens | Role line | Default `model` | Prompt template |
+| Lens | Role line | Default pair | Prompt template |
 |---|---|---|---|
-| Judgment | `reflect judgment, divergent, synthesizer` | `opus` | `references/judgment-reviewer.md` |
-| Tooling | `reflect tooling` | `sonnet` | `references/tooling-reviewer.md` |
-| Divergent | `reflect judgment, divergent, synthesizer` | `opus` | `references/divergent-reviewer.md` |
+| Judgment | `reflect judgment, divergent` | `opus high` | `references/judgment-reviewer.md` |
+| Tooling | `reflect tooling` | `opus high` | `references/tooling-reviewer.md` |
+| Divergent | `reflect judgment, divergent` | `opus high` | `references/divergent-reviewer.md` |
 
 Pass each template verbatim, substituting the transcript path or digest where marked. Reviewers return findings in the `Agent` response body.
 
 ## 3. Synthesize
 
-One `Agent` call, `subagent_type: general-purpose`, `model` from the `reflect judgment, divergent, synthesizer` line (default `opus`). It spot-verifies citations through MCP, and a read-only type such as `Explore` has no MCP tools. Pass `references/synthesizer.md` verbatim, with each reviewer's full output inlined where marked. It returns an Accepted / Rejected / Backlog list.
+One `Agent` call, `subagent_type: general-purpose`, `model` and `effort` from the `reflect synthesizer` line (default `opus xhigh`). It spot-verifies citations through MCP, and a read-only type such as `Explore` has no MCP tools. Pass `references/synthesizer.md` verbatim, with each reviewer's full output inlined where marked. It returns an Accepted / Rejected / Backlog list.
 
 ## 4. Structural enforcement check
 
