@@ -22,7 +22,7 @@ claude --plugin-dir ./shuhari
 ```
 
 skills are namespaced: `/dojo` is `/shuhari:dojo`.
-run `/shuhari:ki` once to choose which models each role uses.
+run `/shuhari:ki` once to choose which model and effort each role uses.
 
 ## license
 
